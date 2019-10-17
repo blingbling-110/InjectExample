@@ -13,11 +13,6 @@
 #endif
 
 
-typedef void (*lpCallDll)();//定义函数指针
-lpCallDll lpExpFun;//声明导出函数
-HMODULE hModule;//声明模块句柄
-
-
 // CCallDllDlg 对话框
 
 

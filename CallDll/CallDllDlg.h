@@ -32,4 +32,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButton();
+private:
+	typedef void (*lpCallDll)();//定义函数指针
+	lpCallDll lpExpFun;//声明导出函数
+	HMODULE hModule;//声明模块句柄
 };

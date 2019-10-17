@@ -234,7 +234,20 @@ HANDLE free(DWORD dwProcID, LPVOID lpModuleAddress)
 
 void CInjectDllDlg::OnBnClickedButtonInject()
 {
-	DWORD dwProcID = getProcIDByName(L"CallDll.exe");
+	DWORD dwProcID;
+
+	//方法一：根据进程名称获取操作系统中该进程的标识符（PID）
+	//dwProcID = getProcIDByName(L"CallDll.exe");
+	
+	//方法二：根据窗口名称获取操作系统中该进程的标识符（PID）
+	HWND hwnd = FindWindowA(NULL, "调用Dll");
+	if (hwnd == NULL)
+	{
+		MessageBoxA(NULL, "未发现\"调用Dll\"进程", "注入提示", MB_OK);
+		return;
+	}
+	GetWindowThreadProcessId(hwnd, &dwProcID);
+
 	if (dwProcID == -1)
 	{
 		MessageBoxA(NULL, "获取系统进程快照失败", "注入提示", MB_OK);
